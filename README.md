@@ -2,6 +2,8 @@
 
 Repositório de infraestrutura e orquestração do projeto.
 
+> 📚 **Documentação completa**: Veja [docs/README.md](docs/README.md) para visão geral do projeto.
+
 ## Estrutura
 
 ```
