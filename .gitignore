@@ -1,0 +1,27 @@
+# Ambiente
+*.env
+!db.env.example
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Volumes Docker (se versionados localmente)
+pg_data/
+redis_data/
+
+# Temporários
+tmp/
+temp/
+*.tmp
+
