@@ -5,16 +5,14 @@ services:
     image: postgres:18.0
     container_name: crm_postgres
     restart: unless-stopped
-    env_file:
-      - ./db.env
     environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      POSTGRES_DB: crm
+      POSTGRES_USER: crm_user
+      POSTGRES_PASSWORD: crm_pass
     ports:
       - "5432:5432"
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql
     networks:
       - crm_net
 
@@ -32,26 +30,27 @@ services:
 
   backend:
     build:
-      context: ../novo_crm-backend
+      context: ../backend
       dockerfile: Dockerfile
     container_name: crm_backend
     env_file:
-      - ../novo_crm-backend/.env
+      - ../backend/.env
     depends_on:
       - postgres
       - redis
     ports:
-      - "8080:8080"
+      - "8081:8080"
     networks:
       - crm_net
 
   frontend:
     build:
-      context: ../novo_crm-frontend
+      context: ../frontend
       dockerfile: Dockerfile
     container_name: crm_frontend
     environment:
       - NEXT_PUBLIC_API_BASE=${NEXT_PUBLIC_API_BASE:-/api}
+      - NEXT_BACKEND_HOST=backend
     depends_on:
       - backend
     ports:

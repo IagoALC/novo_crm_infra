@@ -4,7 +4,7 @@ PROJECT := novo_crm
 COMPOSE := docker compose
 NET := crm_net
 
-BACKEND_DIR := ../novo_crm-backend
+BACKEND_DIR := ../backend
 MIGRATIONS := $(BACKEND_DIR)/migrations
 DB_URL := postgres://crm_user:crm_pass@postgres:5432/crm?sslmode=disable
 
